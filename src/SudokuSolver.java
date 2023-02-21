@@ -24,6 +24,7 @@ public class SudokuSolver
         int emptycol = -1;
         boolean found = false;
         for (int row =0; row<9 ; row++) {
+
             for (int col = 0; col < 9; col++) {
                 if (puzzle[row][col] == ' ') {
                     found = true;
@@ -68,10 +69,20 @@ public class SudokuSolver
      */
     private Set<Character> getOptionsForThisSpot(int row, int col)
     {
-        Set<Character> choices = new HashSet<Character>();
-        for (char c = '1'; c <= '9'; c++)
-            choices.add(c);
+        // characters that have already been taken up in the row
+        Set<Character> alreadyTaken = new HashSet<Character>();
+        for (int c=0; c<9; c++) {
+            if (puzzle[row][c] != ' ') {
+                alreadyTaken.add(puzzle[row][c]);
+            }
+        }
 
+        // characters that have not been taken
+        Set<Character> choices = new HashSet<Character>();
+        for (char ch = '1'; ch <= '9'; ch++) {
+            if (!alreadyTaken.contains(ch))
+                choices.add(ch);
+        }
         return choices;
 
     }
