@@ -42,9 +42,9 @@ public class SudokuTester
     {
         char [][] puzzle;
 
-        puzzle = getPuzzle(EASY2);  // replace the parameter with a constant from above
+        puzzle = getPuzzle(HARD3);  // replace the parameter with a constant from above
 
-        SudokuDrawer picture = new SudokuDrawer(puzzle);
+//        SudokuDrawer picture = new SudokuDrawer(puzzle);
         SudokuSolver solver = new SudokuSolver(puzzle);
 
         long tStart = System.currentTimeMillis();

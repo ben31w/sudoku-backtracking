@@ -69,16 +69,32 @@ public class SudokuSolver
      */
     private Set<Character> getOptionsForThisSpot(int row, int col)
     {
-        // characters that have already been taken up in the row or column
+        // characters that have already been taken up in the row, column, or box
         Set<Character> alreadyTaken = new HashSet<Character>();
+
+        // find characters already in the row
         for (int c=0; c<9; c++) {
             if (puzzle[row][c] != ' ') {
                 alreadyTaken.add(puzzle[row][c]);
             }
         }
+
+        // find characters already in the column
         for (int r=0; r<9; r++) {
             if (puzzle[r][col] != ' ') {
                 alreadyTaken.add(puzzle[r][col]);
+            }
+        }
+
+        // find characters already in the 3x3 box
+        // find starting row and columns of the box using integer division
+        int boxRow = (row / 3) * 3;
+        int boxCol = (col / 3) * 3;
+        for (int r=boxRow; r<boxRow+3; r++) {
+            for (int c=boxCol; c<boxCol+3; c++) {
+                if (puzzle[r][c] != ' ') {
+                    alreadyTaken.add(puzzle[r][c]);
+                }
             }
         }
 
