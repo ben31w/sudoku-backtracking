@@ -69,11 +69,16 @@ public class SudokuSolver
      */
     private Set<Character> getOptionsForThisSpot(int row, int col)
     {
-        // characters that have already been taken up in the row
+        // characters that have already been taken up in the row or column
         Set<Character> alreadyTaken = new HashSet<Character>();
         for (int c=0; c<9; c++) {
             if (puzzle[row][c] != ' ') {
                 alreadyTaken.add(puzzle[row][c]);
+            }
+        }
+        for (int r=0; r<9; r++) {
+            if (puzzle[r][col] != ' ') {
+                alreadyTaken.add(puzzle[r][col]);
             }
         }
 
